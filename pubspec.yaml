@@ -22,15 +22,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
-
-  # Example assets section (optional)
-  # assets:
-  #   - images/
-
-  # Example fonts section (optional)
-  # fonts:
-  #   - family: CustomFont
-  #     fonts:
-  #       - asset: fonts/CustomFont-Regular.ttf
-
+  l10n:
+    arb-dir: l10n
+    template-arb-file: app_en.arb
+    output-localization-file: app_localizations.dart
