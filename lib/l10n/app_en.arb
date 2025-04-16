@@ -1,0 +1,12 @@
+{
+  "appTitle": "Savings Calculator",
+  "welcome": "Welcome!",
+  "introText": "Track your savings, reduce expenses,\nand save for your big goals.",
+  "aboutTitle": "About",
+  "aboutDescription": "This is the About page.\n\nHere you could provide information about your app, version, team, or purpose.\n\nThe layout is responsive and supports dark mode and multiple languages.",
+  "developedBy": "Developed by Nukenov Daniyar\nCourse: Crossplatform Development\nAstana IT University\nTeacher: Abzal Kyzyrkanov",
+  "renameEntry": "Rename Entry",
+  "enterNewName": "Enter new name",
+  "cancel": "Cancel",
+  "save": "Save"
+}
