@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(SavingsApp());
@@ -13,7 +11,6 @@ class SavingsApp extends StatefulWidget {
 
 class _SavingsAppState extends State<SavingsApp> {
   ThemeMode _themeMode = ThemeMode.system;
-  Locale _locale = const Locale('kk');
 
   void _toggleTheme() {
     setState(() {
@@ -22,15 +19,7 @@ class _SavingsAppState extends State<SavingsApp> {
   }
 
   void _cycleLanguage() {
-    setState(() {
-      if (_locale.languageCode == 'en') {
-        _locale = const Locale('ru');
-      } else if (_locale.languageCode == 'ru') {
-        _locale = const Locale('kk');
-      } else {
-        _locale = const Locale('en');
-      }
-    });
+    // Временно отключено
   }
 
   @override
@@ -41,13 +30,10 @@ class _SavingsAppState extends State<SavingsApp> {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: _themeMode,
-      locale: _locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
       home: SavingsHomePage(
         toggleTheme: _toggleTheme,
         cycleLanguage: _cycleLanguage,
-        currentLanguage: _locale.languageCode,
+        currentLanguage: 'en',
         themeMode: _themeMode,
       ),
       routes: {
@@ -90,22 +76,21 @@ class _SavingsHomePageState extends State<SavingsHomePage> {
   }
 
   void _renameEntry(int index) async {
-    final local = AppLocalizations.of(context)!;
     TextEditingController controller = TextEditingController(text: savingsList[index]);
 
     await showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(local.renameEntry),
+          title: Text("Rename Entry"),
           content: TextField(
             controller: controller,
-            decoration: InputDecoration(hintText: local.enterNewName),
+            decoration: InputDecoration(hintText: "Enter new name"),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(local.cancel),
+              child: Text("Cancel"),
             ),
             TextButton(
               onPressed: () {
@@ -114,7 +99,7 @@ class _SavingsHomePageState extends State<SavingsHomePage> {
                 });
                 Navigator.pop(context);
               },
-              child: Text(local.save),
+              child: Text("Save"),
             ),
           ],
         );
@@ -124,11 +109,9 @@ class _SavingsHomePageState extends State<SavingsHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final local = AppLocalizations.of(context)!;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(local.appTitle),
+        title: Text("Savings Calculator"),
         centerTitle: true,
         actions: [
           IconButton(
@@ -146,12 +129,12 @@ class _SavingsHomePageState extends State<SavingsHomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                local.welcome,
+                "Welcome!",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 12),
               Text(
-                local.introText,
+                "Track your savings, reduce expenses,\nand save for your big goals.",
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 16),
@@ -185,7 +168,7 @@ class _SavingsHomePageState extends State<SavingsHomePage> {
               SizedBox(height: 12),
               Center(
                 child: Text(
-                  local.developedBy,
+                  "Developed by Nukenov Daniyar\nCourse: Crossplatform Development\nAstana IT University\nTeacher: Abzal Kyzyrkanov",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 13,
@@ -215,7 +198,7 @@ class _SavingsHomePageState extends State<SavingsHomePage> {
             onPressed: widget.cycleLanguage,
             mini: true,
             child: Icon(Icons.language),
-            tooltip: 'Switch Language',
+            tooltip: 'Switch Language (disabled)',
           ),
           SizedBox(height: 10),
           FloatingActionButton(
@@ -233,15 +216,13 @@ class _SavingsHomePageState extends State<SavingsHomePage> {
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final local = AppLocalizations.of(context)!;
-
     return Scaffold(
-      appBar: AppBar(title: Text(local.aboutTitle)),
+      appBar: AppBar(title: Text("About")),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Text(
-            local.aboutDescription,
+            "This is the About page.\n\nHere you could provide information about your app, version, team, or purpose.\n\nThe layout is responsive and supports dark mode.",
             style: TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
